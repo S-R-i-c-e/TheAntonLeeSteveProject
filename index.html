@@ -1,76 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-<link rel="stylesheet"  href="./assets/css/style.css">
-    
-</head>
-<body>
-
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
     <div class="container">
-    <div id="currency">
+      <div id="currency"></div>
 
-        <h2>CONVERT CURRENCY</h2>
-        <p><input id="amount" placeholder ="Enter amount"></input>
-      `
-        <select id="currency-from" name="currency-from">
-          <option>Select Currency</option>
-          <option value="USD Washington">United States Dollar</option>
-          <option value="EUR Brussels">European Euro</option>
-          <option value="JPY Tokyo ">Japanese Yen</option>
-          <option value="GBP London">British Pound Sterling</option>
-          <option value="AUD Canberra">Australian Dollar</option>
-          <option value="CND Ottowa">Canadian Dollar</option>
-          <option value="CHF Zurich">Swiss Franc</option>
-          <option value="CNH Beijing">Chinese Yuan</option>
-          <option value="HKD Hong Kong">Hong Kong Dollar</option>
-          <option value="NZD Wellington">New Zealand Dollar</option>
-      </select>
-      
-      <span>convert to</span>
-      
-      <select id="currency-to" name="currency-to">
-          <option>Select Currency</option>
-          <option value="USD US Washington">United States Dollar</option>
-          <option value="EUR BE Brussels">European Euro</option>
-          <option value="JPY JP ">Japanese Yen</option>
-          <option value="GBP GB London">British Pound Sterling</option>
-          <option value="AUD AU Canberra">Australian Dollar</option>
-          <option value="CND CA Ottowa">Canadian Dollar</option>
-          <option value="CHF CH Zurich">Swiss Franc</option>
-          <option value="CNH CN Beijing">Chinese Yuan</option>
-          <option value="HKD HK Hong Kong">Hong Kong Dollar</option>
-          <option value="NZD NZ Wellington">New Zealand Dollar</option>
-      </select>
-      
-      </p>
-      
-      <button id="submit">
-      submit
-      </button>
-      
-      <span id="convert-from"></span>
-      <span id="convert-to"></span>
+      <div id="map"></div>
 
-
+      <div id="holiday"></div>
     </div>
 
-    <div id="map"></div>
-        
-    <div id="holiday"></div>
-
-      </div>
-
-      
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="./assets/js/currency.js"></script>
-<script src="./assets/js/map.js"></script>
-<script src="./assets/js/holiday.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./assets/js/currency-data.js"></script>
+    <script src="./assets/js/currency.js"></script>
+    <script src="./assets/js/map.js"></script>
+    <script src="./assets/js/holiday.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

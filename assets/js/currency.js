@@ -1,6 +1,7 @@
 // Create variable for open weather api key
 let api = "2a06c39ab528ae5260e7be3fb9a676eb";
 
+let currencyResults = document.querySelector('#currency-results');
 
 // Onclick event to run functions
 
@@ -58,8 +59,12 @@ function currencyConversion () {
         // Calculate the conversion based on the actual amount value user entered
 
           let currencyUsersAmount = amount * currencyUnit1;
-          console.log("You converted " + amount + " " + convertFrom + " which is equal to " + currencyUsersAmount.toFixed(2) + " " + convertTo);
+          let currencyUsersAmountRounded = currencyUsersAmount.toFixed(2)
+          console.log("You converted " + amount + " " + convertFrom + " which is equal to " + currencyUsersAmountRounded + " " + convertTo);
+
+          
         })  
+        
 }
 
 //Find name of capital city, geo location via currency selection (the exchanging "to" currency)
