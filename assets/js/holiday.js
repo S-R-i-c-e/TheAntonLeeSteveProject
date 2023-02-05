@@ -27,17 +27,70 @@ return:     ISO-3166 two character code else false if not found.
 
 ** consider using Moment.js to handle dates.
 ** need to keep track of country along with dates
-
-Rudimentary processing of nationalHolidaysObject - as yet unknown format. Return a list of dates (assumed).
-function:   processNationalHolidays(nationalHolidaysObject).
-return:     List of date strings - 
 */
-// TEST purpose open weather calls
-// const apiKeyWeather = "b815fef6c88c1e911e03dd1ab36f7ad3";
-// const lon = 5;
-// const lat = 25;
-// const apiWeatherCall = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKeyWeather}&units=metric`;
 
+// NationalHoliday class to hold national holiday data for a country.
+// Each instance holiday or natoable day in that countries calendar
+class NationalHoliday {
+
+    constructor(country, date, name, description, type) {
+        this._country = country;
+        this._date = date;
+        this._name = name;
+        this._description = description;
+        this._type = type;
+    }
+
+    // calenderificCoustructor tailored to construct using a calenderific request
+    // holiday[] array object
+    // TODO some iso dates include a time - slice that out
+
+    static calendarificConstructor(calendarObject) {
+        return new NationalHoliday(
+            calendarObject.country.name,
+            calendarObject.date.iso,
+            calendarObject.name,
+            calendarObject.description,
+            calendarObject.type[0])
+    }
+    // HTML creation string tailored to TheAntonLeeSteveProject
+    toHTMLString() {
+        return `<h4>${this._date}</h4>
+            <h4>${this._description}</h4>`
+    }
+
+    toString() {
+        return `country: ${this._country}; date: ${this._date}; name: ${this._name}.`;
+    }
+}
+// NationalHolidaysList class to encapsulate all the NationalHoliday data of a country.
+class NationalHolidaysList {
+
+    constructor(country, year, holidayArray) {
+        this._country = country;
+        this._year = year;
+        this._holsList = holidayArray;
+    }
+    // calenderificCoustructor tailored to construct using a calenderific request data
+    static calendarificHolidayListConstructor(calendarificObject) {
+        let holidays = calendarificObject.response.holidays;
+        let country = holidays[0].country.name;
+        let year = holidays[0].date.datetime.year;
+        let holidayArray = holidays.map(holiday => NationalHoliday.calendarificConstructor(holiday));
+        return new NationalHolidaysList(country, year, holidayArray);
+    }
+
+    get year() {
+        return this._year;
+    }
+    get country() {
+        return this._country;
+    }
+    // HTML creation string tailored to TheAntonLeeSteveProject
+    get toHTML() {
+        return this._holsList.map(holiday => holiday.toHTMLString()).join("");
+    }
+}
 // HTML index.html element handles
 let holidayList = document.getElementById("holiday");
 
@@ -45,40 +98,38 @@ let holidayList = document.getElementById("holiday");
 const apiKeyCalendar = "66f395fca8dd55c192168f85f4ec5fcde1f2ae4a";
 const nationsListRequestURL = `https://calendarific.com/api/v2/countries?&api_key=${apiKeyCalendar}`;
 
-// Constant and variable to reference the nationsReference array - 
-const nationsReferenceStoreName = "nationsReference";
-// global variable to hold most recent holiday information
-let holidays = [];
-
+// createHolidaysRequestURL(ISO-3166 code) uses api key defined above and country code to create Calendarific
+// URL request string - year is currently set to 2023
+// TODO at least year to reflect current year?
 function createHolidaysRequestURL(countryCode) {
     return `https://calendarific.com/api/v2/holidays?&api_key=${apiKeyCalendar}&country=${countryCode}&year=${new Date().getFullYear()}`
 }
-
+// processHolidays(Calendarific api data) converts data into HTML string ready for display on website
 function processHolidays(calendarificData) {
-    let holidaysArray = calendarificData.response.holidays
-    let htmlString = "";
-    for (let day of holidaysArray) {
-        htmlString += `<h4>${day.description}</h4>
-        <h5>${day.date.datetime.day}-
-        ${day.date.datetime.month}-
-        ${day.date.datetime.year}</h5>`
-        // let holiday = {
-        //     day: day.date.datetime.day,
-        //     month: day.date.datetime.month,
-        //     year: day.date.datetime.year,
-        //     description: day.description,
-        // }
-        // addToPage(holiday);
-        // holidays.push(holiday);
-    }
-    holidayList.innerHTML = htmlString;
+    let newHolidaysData = NationalHolidaysList.calendarificHolidayListConstructor(calendarificData);
+    holidayList.innerHTML = "";                         // clear display field
+    holidayList.innerHTML = newHolidaysData.toHTML;     // display holidays
 }
-
+// retrieveNationalHolidays(ISO-3166 code) fetches national holday data from Calendarific.com
 function retrieveNationalHoidays(countryCode) {
-    fetch(createHolidaysRequestURL(countryCode))
+    fetch(createHolidaysRequestURL(countryCode))            // create request URL string
         .then(response => response.json())
-        .then(holidayData => processHolidays(holidayData));
+        .then(holidayData => processHolidays(holidayData)); // pass data on for processing
 }
 
-// test
-retrieveNationalHoidays("BD");
+
+// test - TEST CODE HERE
+// retrieveNationalHoidays("CA");
+
+
+//CORS error! goodness knows
+//testRetrieveNationalHolidays();
+// fetch('data.json')
+//     .then((response) => response.json())
+//     .then((json) => processHolidays(json));
+
+// function testRetrieveNationalHolidays() {
+//     fetch('./andorra.json')
+//     .then((response) => response.json())
+//     .then((json) => processHolidays(json));
+// }
