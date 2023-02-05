@@ -55,8 +55,13 @@ class NationalHoliday {
     }
     // HTML creation string tailored to TheAntonLeeSteveProject
     toHTMLString() {
-        return `<h4>${this._date}</h4>
-            <h4>${this._description}</h4>`
+        return `<div class="card">
+                    <div class="card-header">${this._date}</div>
+                    <div class="card-body">
+                        <h5 class="card-title">${this._name}</h5>
+                        <p class="card-text">${this._description}</p>
+                    </div>
+                </div>`;
     }
 
     toString() {
@@ -93,7 +98,7 @@ class NationalHolidaysList {
 }
 // HTML index.html element handles
 let holidayList = document.getElementById("holiday");
-
+let holidayDestination = document.getElementById("destination-country");
 // Constants for Calendarific api country codes and holidays requests.
 const apiKeyCalendar = "66f395fca8dd55c192168f85f4ec5fcde1f2ae4a";
 const nationsListRequestURL = `https://calendarific.com/api/v2/countries?&api_key=${apiKeyCalendar}`;
@@ -107,8 +112,9 @@ function createHolidaysRequestURL(countryCode) {
 // processHolidays(Calendarific api data) converts data into HTML string ready for display on website
 function processHolidays(calendarificData) {
     let newHolidaysData = NationalHolidaysList.calendarificHolidayListConstructor(calendarificData);
-    holidayList.innerHTML = "";                         // clear display field
-    holidayList.innerHTML = newHolidaysData.toHTML;     // display holidays
+    displayHolidays(newHolidaysData);
+    // holidayList.innerHTML = "";                         // clear display field
+    // holidayList.innerHTML = newHolidaysData.toHTML;     // display holidays
 }
 // retrieveNationalHolidays(ISO-3166 code) fetches national holday data from Calendarific.com
 function retrieveNationalHoidays(countryCode) {
@@ -116,10 +122,15 @@ function retrieveNationalHoidays(countryCode) {
         .then(response => response.json())
         .then(holidayData => processHolidays(holidayData)); // pass data on for processing
 }
-
-
+// displayHolidays(NationalHolidaysList Object) - refreshes display to show the national holidays of the destination country
+function displayHolidays(nationalHolidaysData) {
+    holidayDestination.innerHTML = "";
+    holidayDestination.innerHTML = `Destination country ${nationalHolidaysData.country}`;
+    holidayList.innerHTML = "";
+    holidayList.innerHTML = nationalHolidaysData.toHTML;   
+}
 // test - TEST CODE HERE
-// retrieveNationalHoidays("CA");
+retrieveNationalHoidays("ET");
 
 
 //CORS error! goodness knows
