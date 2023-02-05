@@ -1,32 +1,12 @@
-let currencyContainer = document.querySelector('#currency');
+let currencyContainer = document.querySelector("#currency");
 
 let currencyArea = document.createElement("div");
-
-
 
 currencyArea.innerHTML = `
 <h2>CONVERT CURRENCY</h2>
 <p><input id="amount" placeholder ="Enter amount"></input>
 
 <select id="currency-from" name="currency-from">
-  <option>Select Currency</option>
-  <option value="USD Washington">United States Dollar</option>
-  <option value="EUR Brussels">European Euro</option>
-  <option value="JPY Tokyo ">Japanese Yen</option>
-  <option value="GBP London">British Pound Sterling</option>
-  <option value="AUD Canberra">Australian Dollar</option>
-  <option value="CAD Ottowa">Canadian Dollar</option>
-  <option value="CHF Zurich">Swiss Franc</option>
-  <option value="CNH Beijing">Chinese Yuan</option>
-  <option value="HKD Hong Kong">Hong Kong Dollar</option>
-  <option value="NZD Wellington">New Zealand Dollar</option>
-  <option>.......................</option>
-  <option>All other currencies below ↓</option>
-  </select>
-
-<span>convert to</span>
-
-<select id="currency-to" name="currency-to">
   <option>Select Currency</option>
   <option value="USD US Washington">United States Dollar</option>
   <option value="EUR BE Brussels">European Euro</option>
@@ -40,20 +20,329 @@ currencyArea.innerHTML = `
   <option value="NZD NZ Wellington">New Zealand Dollar</option>
   <option>.......................</option>
   <option>All other currencies below ↓</option>
+  <option>.......................</option>
+  <option value="AED Abu Dhabi">United Arab Emirates Dirham</option>
+    <option value="AFN AF Kabul">Afghan Afghani</option>
+    <option value="ALL AL Tirana">Albanian Lek</option>
+    <option value="AMD AM Yerevan">Armenian Dram</option>
+    <option value="ANG AN Willemstad">Netherlands Antillean Guilder</option>
+    <option value="AOA AO Luanda">Angolan Kwanza</option>
+    <option value="ARS AR Buenos Aires">Argentine Peso</option>
+    <option value="AWG AW Oranjestad">Aruban Florin</option>
+    <option value="AZN AZ Baku">Azerbaijani Manat</option>
+    <option value="BAM BA Sarajevo">Bosnian Convertible Mark</option>
+    <option value="BBD BB Bridgetown">Barbadian Dollar</option>
+    <option value="BDT BD Dhaka">Bangladeshi Taka</option>
+    <option value="BGN BG Sofia">Bulgarian Lev</option>
+    <option value="BHD  BHManama">Bahraini Dinar</option>
+    <option value="BIF BI Gitega">Burundian Franc</option>
+    <option value="BMD BM Hamilton">Bermudian Dollar</option>
+    <option value="BND BN Bandar Seri Begawan">Brunei Dollar</option>
+    <option value="BOB BO La Paz">Bolivian Boliviano</option>
+    <option value="BRL BR Brazilia">Brazilian Real</option>
+    <option value="BSD BS Nassau">Bahamian Dollar</option>
+    <option value="BTN BT Thimphu">Bhutanese Ngultrum</option>
+    <option value="BWP BW Gaborone">Botswana Pula</option>
+    <option value="BYN BY Minsk">Belarusian Ruble</option>
+    <option value="BZD BZ Belmopan">Belize Dollar</option>
+    <option value="CDF CD Brazzaville">Congolese Franc</option>
+    <option value="CLP CL Santiago">Chilean Peso</option>
+    <option value="COP CO Bogotá">Colombian Peso</option>
+    <option value="CRC San José">Costa Rican Colón</option>
+    <option value="CUP CU Havana">Cuban peso</option>
+    <option value="CVE CV Praia">Cape Verdean Escudo</option>
+    <option value="CZK CZ Prague">Czech Koruna</option>
+    <option value="DJF DJ Djibouti city">Djiboutian Franc</option>
+    <option value="DKK DK Copenhagen">Danish Krone</option>
+    <option value="DOP DO Santo Domingo">Dominican Peso</option>
+    <option value="DZD DZ Algiers">Algerian Dinar</option>
+    <option value="EGP EG Cairo">Egyptian Pound</option>
+    <option value="ERN ER Asmara">Eritrean Nakfa</option>
+    <option value="ETB ET Addis Ababa">Ethiopian Birr</option>
+    <option value="FJD FJ Suva">Fijian Dollar</option>
+    <option value="FKP FK Stanley">Falkland Islands Pound</option>
+    <option value="GEL GE Tbilisi">Georgian Lari</option>
+    <option value="GGP GG Saint Peter Port">Guernsey Pound</option>
+    <option value="GHS GH Accra">Ghanaian Cedi</option>
+    <option value="GIP GI Gibraltar">Gibraltar Pound</option>
+    <option value="GMD GM Banjul">Gambian Dalasi</option>
+    <option value="GNF GN Conakry">Guinean Franc</option>
+    <option value="GTQ GT Guatemala City">Guatemalan Quetzal</option>
+    <option value="GYD GY Georgetown">Guyanese Dollar</option>
+    <option value="HNL HN Tegucigalpa">Honduran Lempira</option>
+    <option value="HRK HR Zagreb">Croatian Kuna</option>
+    <option value="HTG HT Port-au-Prince">Haitian Gourde</option>
+    <option value="HUF HU Budapest">Hungarian Forint</option>
+    <option value="IDR ID Jakarta">Indonesian Rupiah</option>
+    <option value="ILS IL Jerusalem">Israeli Shekel</option>
+    <option value="INR IN New Delhi">Indian Rupee</option>
+    <option value="IQD IQ Baghdad">Iraqi Dinar</option>
+    <option value="IRR IR Tehran">Iranian Rial</option>
+    <option value="ISK IS Reykjavík">Icelandic Króna</option>
+    <option value="JMD JM Kingston">Jamaican Dollar</option>
+    <option value="JOD JO Amman">Jordanian Dinar</option>
+    <option value="KES KE Nairobi">Kenyan Shilling</option>
+    <option value="KGS KG Bishkek">Kyrgyzstani Som</option>
+    <option value="KHR KH Phnom Penh">Cambodian Riel</option>
+    <option value="KID KI Tarawa">Kiribati Dollar</option>
+    <option value="KMF KM Moroni">Comorian Franc</option>
+    <option value="KPW KP Pyongyang">North Korean Won</option>
+    <option value="KRW KR Seoul">South Korean Won</option>
+    <option value="KWD KW Kuwait City">Kuwaiti Dinar</option>
+    <option value="KYD KY George Town">Cayman Islands Dollar</option>
+    <option value="KZT KZ Astana">Kazakhstani Tenge</option>
+    <option value="LAK LA Vientiane">Lao Kip</option>
+    <option value="LBP LB Beirut ">Lebanese Pound</option>
+    <option value="LKR LK Colombo">Sri Lankan Rupee</option>
+    <option value="LRD LR Monrovia">Liberian Dollar</option>
+    <option value="LSL LS Maseru ">Lesotho Loti</option>
+    <option value="LYD LY Tripoli">Libyan Dinar</option>
+    <option value="MAD MA Rabat">Moroccan Dirham</option>
+    <option value="MDL MD Chișinău">Moldovan Leu</option>
+    <option value="MGA MG Antananarivo">Malagasy Ariary</option>
+    <option value="MKD MK Skopje">Macedonian Denar</option>
+    <option value="MMK MM Naypyidaw">Burmese Kyat</option>
+    <option value="MNT MN Ulaanbaatar">Mongolian Tögrög</option>
+    <option value="MOP MO Macau">Macanese Pataca</option>
+    <option value="MUR MU Port Louis">Mauritian Rupee</option>
+    <option value="MVR MV Malé">Maldivian Rufiyaa</option>
+    <option value="MWK MW Lilongwe">Malawian Kwacha</option>
+    <option value="MXN MX Mexico City">Mexican Peso</option>
+    <option value="MYR MY Kuala Lumpur">Malaysian Ringgit</option>
+    <option value="MZN MZ Maputo">Mozambican Metical</option>
+    <option value="NAD NA Windhoek">Namibian Dollar</option>
+    <option value="NGN NG Abuja">Nigerian Naira</option>
+    <option value="NIO NI Managua">Nicaraguan Córdoba</option>
+    <option value="NOK NO Oslo">Norwegian Krone</option>
+    <option value="NPR NP Kathmandu">Nepalese Rupee</option>
+    <option value="OMR OM Muscat">Omani Rial</option>
+    <option value="PAB PA Panama City">Panamanian Balboa</option>
+    <option value="PEN PE Lima">Peruvian Sol</option>
+    <option value="PGK PG Port Moresby">Papua New Guinean Kina</option>
+    <option value="PHP PH Manila">Philippine Peso</option>
+    <option value="PKR PK Islamabad">Pakistani Rupee</option>
+    <option value="PLN PL Warsaw">Polish Złoty</option>
+    <option value="PRB PR Tiraspol">Transnistrian Ruble</option>
+    <option value="PYG PY Asunción">Paraguayan Guaraní</option>
+    <option value="QAR QA Doha">Qatari Riyal</option>
+    <option value="RON RO Bucharest">Romanian Leu</option>
+    <option value="RSD RS Belgrade">Serbian Dinar</option>
+    <option value="RUB RU Moscow">Russian Ruble</option>
+    <option value="RWF RW Kigali">Rwandan Franc</option>
+    <option value="SAR SA Riyadh">Saudi Riyal</option>
+    <option value="SEK SE Stockholm">Swedish Krona</option>
+    <option value="SGD SG Singapore">Singapore Dollar</option>
+    <option value="SHP SH Jamestown">Saint Helena Pound</option>
+    <option value="SLL SL Freetown">Sierra Leonean Leone</option>
+    <option value="SOS SO Mogadishu">Somali Shilling</option>
+    <option value="SRD SR Paramaribo">Surinamese Dollar</option>
+    <option value="SSP SS Juba">South Sudanese Pound</option>
+    <option value="STN ST São Tomé">São Tomé and Príncipe Dobra</option>
+    <option value="SYP SY Damascus">Syrian Pound</option>
+    <option value="SZL SZ Mbabane">Swazi Lilangeni</option>
+    <option value="THB TH Bangkok">Thai Baht</option>
+    <option value="TJS TJ Dushanbe">Tajikistani Somoni</option>
+    <option value="TMT TM Ashgabat">Turkmenistan Manat</option>
+    <option value="TND TN Tunis">Tunisian Dinar</option>
+    <option value="TOP TO Nuku'alofa">Tongan Paʻanga</option>
+    <option value="TRY TR Ankara">Turkish Lira</option>
+    <option value="TTD TT Port of Spain">Trinidad & Tobago Dollar</option>
+    <option value="TVD TV Funafuti">Tuvaluan Dollar</option>
+    <option value="TWD TW Taipei City">New Taiwan Dollar</option>
+    <option value="TZS TZ Dodoma">Tanzanian Shilling</option>
+    <option value="UAH UA Kyiv">Ukrainian Hryvnia</option>
+    <option value="UGX UG Kampala">Ugandan Shilling</option>
+    <option value="UYU UY Montevideo">Uruguayan Peso</option>
+    <option value="UZS UZ Tashkent">Uzbekistani Soʻm</option>
+    <option value="VES VE Caracas">Venezuelan Bolívar Soberano</option>
+    <option value="VND VN Hanoi">Vietnamese Dồng</option>
+    <option value="VUV VU Port Vila">Vanuatu Vatu</option>
+    <option value="WST WS Apia">Samoan Tālā</option>
+    <option value="XAF XA Yaoundé">Central African Franc</option>
+    <option value="XCD XC Castries">Eastern Caribbean Dollar</option>
+    <option value="XOF XO Dakar">West African Franc</option>
+    <option value="XPF XP Papeete">CFP Franc</option>
+    <option value="ZAR ZA Pretoria">South African Rand</option>
+    <option value="ZMW ZM Lusaka">Zambian Kwacha</option>
+    <option value="ZWB ZW Harare">Zimbabwean Bonds</option>
+  </select>
+
+<span>convert to</span>
+
+<select id="currency-to" name="currency-to">
+<option>Select Currency</option>
+<option value="USD US Washington">United States Dollar</option>
+<option value="EUR BE Brussels">European Euro</option>
+<option value="JPY JP Tokyo">Japanese Yen</option>
+<option value="GBP GB London">British Pound Sterling</option>
+<option value="AUD AU Canberra">Australian Dollar</option>
+<option value="CAD CA Ottawa">Canadian Dollar</option>
+<option value="CHF CH Zurich">Swiss Franc</option>
+<option value="CNH CN Beijing">Chinese Yuan</option>
+<option value="HKD HK Hong Kong">Hong Kong Dollar</option>
+<option value="NZD NZ Wellington">New Zealand Dollar</option>
+<option>.......................</option>
+<option>All other currencies below ↓</option>
+<option>.......................</option>
+<option value="AED Abu Dhabi">United Arab Emirates Dirham</option>
+  <option value="AFN AF Kabul">Afghan Afghani</option>
+  <option value="ALL AL Tirana">Albanian Lek</option>
+  <option value="AMD AM Yerevan">Armenian Dram</option>
+  <option value="ANG AN Willemstad">Netherlands Antillean Guilder</option>
+  <option value="AOA AO Luanda">Angolan Kwanza</option>
+  <option value="ARS AR Buenos Aires">Argentine Peso</option>
+  <option value="AWG AW Oranjestad">Aruban Florin</option>
+  <option value="AZN AZ Baku">Azerbaijani Manat</option>
+  <option value="BAM BA Sarajevo">Bosnian Convertible Mark</option>
+  <option value="BBD BB Bridgetown">Barbadian Dollar</option>
+  <option value="BDT BD Dhaka">Bangladeshi Taka</option>
+  <option value="BGN BG Sofia">Bulgarian Lev</option>
+  <option value="BHD  BHManama">Bahraini Dinar</option>
+  <option value="BIF BI Gitega">Burundian Franc</option>
+  <option value="BMD BM Hamilton">Bermudian Dollar</option>
+  <option value="BND BN Bandar Seri Begawan">Brunei Dollar</option>
+  <option value="BOB BO La Paz">Bolivian Boliviano</option>
+  <option value="BRL BR Brazilia">Brazilian Real</option>
+  <option value="BSD BS Nassau">Bahamian Dollar</option>
+  <option value="BTN BT Thimphu">Bhutanese Ngultrum</option>
+  <option value="BWP BW Gaborone">Botswana Pula</option>
+  <option value="BYN BY Minsk">Belarusian Ruble</option>
+  <option value="BZD BZ Belmopan">Belize Dollar</option>
+  <option value="CDF CD Brazzaville">Congolese Franc</option>
+  <option value="CLP CL Santiago">Chilean Peso</option>
+  <option value="COP CO Bogotá">Colombian Peso</option>
+  <option value="CRC San José">Costa Rican Colón</option>
+  <option value="CUP CU Havana">Cuban peso</option>
+  <option value="CVE CV Praia">Cape Verdean Escudo</option>
+  <option value="CZK CZ Prague">Czech Koruna</option>
+  <option value="DJF DJ Djibouti city">Djiboutian Franc</option>
+  <option value="DKK DK Copenhagen">Danish Krone</option>
+  <option value="DOP DO Santo Domingo">Dominican Peso</option>
+  <option value="DZD DZ Algiers">Algerian Dinar</option>
+  <option value="EGP EG Cairo">Egyptian Pound</option>
+  <option value="ERN ER Asmara">Eritrean Nakfa</option>
+  <option value="ETB ET Addis Ababa">Ethiopian Birr</option>
+  <option value="FJD FJ Suva">Fijian Dollar</option>
+  <option value="FKP FK Stanley">Falkland Islands Pound</option>
+  <option value="GEL GE Tbilisi">Georgian Lari</option>
+  <option value="GGP GG Saint Peter Port">Guernsey Pound</option>
+  <option value="GHS GH Accra">Ghanaian Cedi</option>
+  <option value="GIP GI Gibraltar">Gibraltar Pound</option>
+  <option value="GMD GM Banjul">Gambian Dalasi</option>
+  <option value="GNF GN Conakry">Guinean Franc</option>
+  <option value="GTQ GT Guatemala City">Guatemalan Quetzal</option>
+  <option value="GYD GY Georgetown">Guyanese Dollar</option>
+  <option value="HNL HN Tegucigalpa">Honduran Lempira</option>
+  <option value="HRK HR Zagreb">Croatian Kuna</option>
+  <option value="HTG HT Port-au-Prince">Haitian Gourde</option>
+  <option value="HUF HU Budapest">Hungarian Forint</option>
+  <option value="IDR ID Jakarta">Indonesian Rupiah</option>
+  <option value="ILS IL Jerusalem">Israeli Shekel</option>
+  <option value="INR IN New Delhi">Indian Rupee</option>
+  <option value="IQD IQ Baghdad">Iraqi Dinar</option>
+  <option value="IRR IR Tehran">Iranian Rial</option>
+  <option value="ISK IS Reykjavík">Icelandic Króna</option>
+  <option value="JMD JM Kingston">Jamaican Dollar</option>
+  <option value="JOD JO Amman">Jordanian Dinar</option>
+  <option value="KES KE Nairobi">Kenyan Shilling</option>
+  <option value="KGS KG Bishkek">Kyrgyzstani Som</option>
+  <option value="KHR KH Phnom Penh">Cambodian Riel</option>
+  <option value="KID KI Tarawa">Kiribati Dollar</option>
+  <option value="KMF KM Moroni">Comorian Franc</option>
+  <option value="KPW KP Pyongyang">North Korean Won</option>
+  <option value="KRW KR Seoul">South Korean Won</option>
+  <option value="KWD KW Kuwait City">Kuwaiti Dinar</option>
+  <option value="KYD KY George Town">Cayman Islands Dollar</option>
+  <option value="KZT KZ Astana">Kazakhstani Tenge</option>
+  <option value="LAK LA Vientiane">Lao Kip</option>
+  <option value="LBP LB Beirut ">Lebanese Pound</option>
+  <option value="LKR LK Colombo">Sri Lankan Rupee</option>
+  <option value="LRD LR Monrovia">Liberian Dollar</option>
+  <option value="LSL LS Maseru ">Lesotho Loti</option>
+  <option value="LYD LY Tripoli">Libyan Dinar</option>
+  <option value="MAD MA Rabat">Moroccan Dirham</option>
+  <option value="MDL MD Chișinău">Moldovan Leu</option>
+  <option value="MGA MG Antananarivo">Malagasy Ariary</option>
+  <option value="MKD MK Skopje">Macedonian Denar</option>
+  <option value="MMK MM Naypyidaw">Burmese Kyat</option>
+  <option value="MNT MN Ulaanbaatar">Mongolian Tögrög</option>
+  <option value="MOP MO Macau">Macanese Pataca</option>
+  <option value="MUR MU Port Louis">Mauritian Rupee</option>
+  <option value="MVR MV Malé">Maldivian Rufiyaa</option>
+  <option value="MWK MW Lilongwe">Malawian Kwacha</option>
+  <option value="MXN MX Mexico City">Mexican Peso</option>
+  <option value="MYR MY Kuala Lumpur">Malaysian Ringgit</option>
+  <option value="MZN MZ Maputo">Mozambican Metical</option>
+  <option value="NAD NA Windhoek">Namibian Dollar</option>
+  <option value="NGN NG Abuja">Nigerian Naira</option>
+  <option value="NIO NI Managua">Nicaraguan Córdoba</option>
+  <option value="NOK NO Oslo">Norwegian Krone</option>
+  <option value="NPR NP Kathmandu">Nepalese Rupee</option>
+  <option value="OMR OM Muscat">Omani Rial</option>
+  <option value="PAB PA Panama City">Panamanian Balboa</option>
+  <option value="PEN PE Lima">Peruvian Sol</option>
+  <option value="PGK PG Port Moresby">Papua New Guinean Kina</option>
+  <option value="PHP PH Manila">Philippine Peso</option>
+  <option value="PKR PK Islamabad">Pakistani Rupee</option>
+  <option value="PLN PL Warsaw">Polish Złoty</option>
+  <option value="PRB PR Tiraspol">Transnistrian Ruble</option>
+  <option value="PYG PY Asunción">Paraguayan Guaraní</option>
+  <option value="QAR QA Doha">Qatari Riyal</option>
+  <option value="RON RO Bucharest">Romanian Leu</option>
+  <option value="RSD RS Belgrade">Serbian Dinar</option>
+  <option value="RUB RU Moscow">Russian Ruble</option>
+  <option value="RWF RW Kigali">Rwandan Franc</option>
+  <option value="SAR SA Riyadh">Saudi Riyal</option>
+  <option value="SEK SE Stockholm">Swedish Krona</option>
+  <option value="SGD SG Singapore">Singapore Dollar</option>
+  <option value="SHP SH Jamestown">Saint Helena Pound</option>
+  <option value="SLL SL Freetown">Sierra Leonean Leone</option>
+  <option value="SOS SO Mogadishu">Somali Shilling</option>
+  <option value="SRD SR Paramaribo">Surinamese Dollar</option>
+  <option value="SSP SS Juba">South Sudanese Pound</option>
+  <option value="STN ST São Tomé">São Tomé and Príncipe Dobra</option>
+  <option value="SYP SY Damascus">Syrian Pound</option>
+  <option value="SZL SZ Mbabane">Swazi Lilangeni</option>
+  <option value="THB TH Bangkok">Thai Baht</option>
+  <option value="TJS TJ Dushanbe">Tajikistani Somoni</option>
+  <option value="TMT TM Ashgabat">Turkmenistan Manat</option>
+  <option value="TND TN Tunis">Tunisian Dinar</option>
+  <option value="TOP TO Nuku'alofa">Tongan Paʻanga</option>
+  <option value="TRY TR Ankara">Turkish Lira</option>
+  <option value="TTD TT Port of Spain">Trinidad & Tobago Dollar</option>
+  <option value="TVD TV Funafuti">Tuvaluan Dollar</option>
+  <option value="TWD TW Taipei City">New Taiwan Dollar</option>
+  <option value="TZS TZ Dodoma">Tanzanian Shilling</option>
+  <option value="UAH UA Kyiv">Ukrainian Hryvnia</option>
+  <option value="UGX UG Kampala">Ugandan Shilling</option>
+  <option value="UYU UY Montevideo">Uruguayan Peso</option>
+  <option value="UZS UZ Tashkent">Uzbekistani Soʻm</option>
+  <option value="VES VE Caracas">Venezuelan Bolívar Soberano</option>
+  <option value="VND VN Hanoi">Vietnamese Dồng</option>
+  <option value="VUV VU Port Vila">Vanuatu Vatu</option>
+  <option value="WST WS Apia">Samoan Tālā</option>
+  <option value="XAF XA Yaoundé">Central African Franc</option>
+  <option value="XCD XC Castries">Eastern Caribbean Dollar</option>
+  <option value="XOF XO Dakar">West African Franc</option>
+  <option value="XPF XP Papeete">CFP Franc</option>
+  <option value="ZAR ZA Pretoria">South African Rand</option>
+  <option value="ZMW ZM Lusaka">Zambian Kwacha</option>
+  <option value="ZWB ZW Harare">Zimbabwean Bonds</option>
 </select>
+
+<button id="submit">
+SUBMIT
+</button>
 
 </p>
 
-<button id="submit">
-submit
-</button>
 
 <span id="convert-from"></span>
 <span id="convert-to"></span>
 
+<div id="currency-1-to-1"></div>
 <div id="currency-results"></div>
 
 `;
 
 currencyContainer.append(currencyArea);
-
