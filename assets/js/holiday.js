@@ -27,17 +27,37 @@ return:     ISO-3166 two character code else false if not found.
 
 ** consider using Moment.js to handle dates.
 ** need to keep track of country along with dates
-
-Rudimentary processing of nationalHolidaysObject - as yet unknown format. Return a list of dates (assumed).
-function:   processNationalHolidays(nationalHolidaysObject).
-return:     List of date strings - 
 */
-// TEST purpose open weather calls
-// const apiKeyWeather = "b815fef6c88c1e911e03dd1ab36f7ad3";
-// const lon = 5;
-// const lat = 25;
-// const apiWeatherCall = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKeyWeather}&units=metric`;
 
+// NationalHoliday class to hold national holiday data for a country.
+// Each instance holiday or natoable day in that countries calendar
+class NationalHoliday {
+
+    constructor(country, date, name, description, type) {
+        this._country = country;
+        this._date = date;
+        this._name = name;
+        this._description = description;
+        this._type = type;
+    }
+
+    // calenderificCoustructor tailored to construct using a calenderific request
+    // holiday[] array object
+    // TODO some iso dates include a time - slice that out
+
+    static calendarificConstructor(calendarObject) {
+        return new NationalHoliday(
+            calendarObject.country.name,
+            calendarObject.date.iso,
+            calendarObject.name,
+            calendarObject.description,
+            calendarObject.type[0])
+    }
+
+    toString() {
+        return `country: ${this._country}; date: ${this._date}; name: ${this._name}.`;
+    }
+}
 // HTML index.html element handles
 let holidayList = document.getElementById("holiday");
 
@@ -56,20 +76,15 @@ function createHolidaysRequestURL(countryCode) {
 
 function processHolidays(calendarificData) {
     let holidaysArray = calendarificData.response.holidays
-    let htmlString = "";
-    for (let day of holidaysArray) {
-        htmlString += `<h4>${day.description}</h4>
-        <h5>${day.date.datetime.day}-
+    holidayList.innerHTML = "";             // clear display field
+    let htmlString = "";                    // create empty display field
+    for (let day of holidaysArray) {        // extract holiday data from each holiday object in the array
+        htmlString += `<h4>${day.date.datetime.day}-
         ${day.date.datetime.month}-
-        ${day.date.datetime.year}</h5>`
-        // let holiday = {
-        //     day: day.date.datetime.day,
-        //     month: day.date.datetime.month,
-        //     year: day.date.datetime.year,
-        //     description: day.description,
-        // }
-        // addToPage(holiday);
-        // holidays.push(holiday);
+        ${day.date.datetime.year}</h4>
+        <h4>${day.description}</h4>`
+        let newHoliday = NationalHoliday.calendarificConstructor(day);
+        console.log(newHoliday.toString());
     }
     holidayList.innerHTML = htmlString;
 }
@@ -81,4 +96,5 @@ function retrieveNationalHoidays(countryCode) {
 }
 
 // test
-retrieveNationalHoidays("BD");
+retrieveNationalHoidays("BM");
+
