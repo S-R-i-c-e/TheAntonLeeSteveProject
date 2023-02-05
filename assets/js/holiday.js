@@ -25,8 +25,6 @@ Given country name string search the country code object for a match, using:
 function:   CountryCodeSearch(countryCodesObj, searchCountryStr).
 return:     ISO-3166 two character code else false if not found.
 
-** consider using Moment.js to handle dates.
-** need to keep track of country along with dates
 */
 
 // NationalHoliday class to hold national holiday data for a country.
@@ -40,15 +38,12 @@ class NationalHoliday {
         this._description = description;
         this._type = type;
     }
-
     // calenderificCoustructor tailored to construct using a calenderific request
     // holiday[] array object
-    // TODO some iso dates include a time - slice that out
-
     static calendarificConstructor(calendarObject) {
         return new NationalHoliday(
             calendarObject.country.name,
-            calendarObject.date.iso,
+            convertDate(calendarObject.date.iso),
             calendarObject.name,
             calendarObject.description,
             calendarObject.type[0])
@@ -84,7 +79,6 @@ class NationalHolidaysList {
         let holidayArray = holidays.map(holiday => NationalHoliday.calendarificConstructor(holiday));
         return new NationalHolidaysList(country, year, holidayArray);
     }
-
     get year() {
         return this._year;
     }
@@ -113,8 +107,6 @@ function createHolidaysRequestURL(countryCode) {
 function processHolidays(calendarificData) {
     let newHolidaysData = NationalHolidaysList.calendarificHolidayListConstructor(calendarificData);
     displayHolidays(newHolidaysData);
-    // holidayList.innerHTML = "";                         // clear display field
-    // holidayList.innerHTML = newHolidaysData.toHTML;     // display holidays
 }
 // retrieveNationalHolidays(ISO-3166 code) fetches national holday data from Calendarific.com
 function retrieveNationalHoidays(countryCode) {
@@ -125,22 +117,14 @@ function retrieveNationalHoidays(countryCode) {
 // displayHolidays(NationalHolidaysList Object) - refreshes display to show the national holidays of the destination country
 function displayHolidays(nationalHolidaysData) {
     holidayDestination.innerHTML = "";
-    holidayDestination.innerHTML = `Destination country ${nationalHolidaysData.country}`;
+    holidayDestination.innerHTML = `Destination country ${nationalHolidaysData.country} - National holidays in ${nationalHolidaysData.year}.`;
     holidayList.innerHTML = "";
     holidayList.innerHTML = nationalHolidaysData.toHTML;   
 }
+// convertDate(ISO date format) date, possibly with time stamp appended, converted to simple UK date format
+function convertDate(isoDate) {
+    console.log(isoDate);
+    return `${isoDate.slice(8,10)} - ${isoDate.slice(5,7)} - ${isoDate.slice(0,4)}`;
+}
 // test - TEST CODE HERE
-retrieveNationalHoidays("ET");
-
-
-//CORS error! goodness knows
-//testRetrieveNationalHolidays();
-// fetch('data.json')
-//     .then((response) => response.json())
-//     .then((json) => processHolidays(json));
-
-// function testRetrieveNationalHolidays() {
-//     fetch('./andorra.json')
-//     .then((response) => response.json())
-//     .then((json) => processHolidays(json));
-// }
+retrieveNationalHoidays("LB");
