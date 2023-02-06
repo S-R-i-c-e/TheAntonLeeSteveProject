@@ -1,7 +1,9 @@
 // Create variable for open weather api key
 let api = "2a06c39ab528ae5260e7be3fb9a676eb";
-
+let currency1To1 = document.querySelector('#currency-1-to-1');
 let currencyResults = document.querySelector('#currency-results');
+
+
 
 // Onclick event to run functions
 
@@ -23,6 +25,10 @@ function currencyConversion () {
         output = selectElement.value;
 
         let amount = $("#amount").textContent = output;
+
+        if (amount.textContent = output = "") {
+        let amount = 1;
+        }
 
         // console.log(amount)
 
@@ -62,6 +68,8 @@ function currencyConversion () {
           let currencyUsersAmountRounded = currencyUsersAmount.toFixed(2)
           console.log("You converted " + amount + " " + convertFrom + " which is equal to " + currencyUsersAmountRounded + " " + convertTo);
 
+          currency1To1.innerHTML = "1 " + convertFrom + " = " + currencyUnit1 + " " + convertTo;
+          currencyResults.innerHTML = "You converted " + amount + " " + convertFrom + " which is equal to " + currencyUsersAmountRounded + " " + convertTo;
           
         })  
         
@@ -74,7 +82,7 @@ function capitalCityLocation () {
   let capitalName = $("#convert-to").textContent = output.slice(7);
         // console.log(capitalName);
 
-  let iso = $("#convert-to").textContent = output.slice(4, 6);
+  let iso = $("#convert-to").textContent = output.slice(0, 2);
 
 // Create function to find country code, capital city and longitude and latitude of city
 // creating an object based on this return
@@ -112,6 +120,7 @@ function capitalCityLocation () {
   })
   }
   
+
 
 
 
