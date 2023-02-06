@@ -4,10 +4,11 @@ let currencyArea = document.createElement("div");
 
 currencyArea.innerHTML = `
 <h2>CONVERT CURRENCY</h2>
-<p><input id="amount" placeholder ="Enter amount"></input>
+<form id="input-button-container">
+<div class="inline-block"><input id="amount" placeholder ="Enter amount"></input>
 
 <select id="currency-from" name="currency-from">
-  <option>Select Currency</option>
+<option disabled selected hidden>Select Currency</option>
   <option value="USD US Washington">USD United States Dollar</option>
   <option value="EUR BE Brussels">EUR European Euro</option>
   <option value="JPY JP Tokyo">JPY Japanese Yen</option>
@@ -164,12 +165,13 @@ currencyArea.innerHTML = `
     <option value="ZAR ZA Pretoria">ZAR South African Rand</option>
     <option value="ZMW ZM Lusaka">ZMW Zambian Kwacha</option>
     <option value="ZWB ZW Harare">ZWB Zimbabwean Bonds</option>
+    <form>
   </select>
 
-<span>convert to</span>
+<div id="convert-to-text">convert to</div>
 
 <select id="currency-to" name="currency-to">
-<option>Select Currency</option>
+<option disabled selected hidden>Select Currency</option>
   <option value="USD US Washington">USD United States Dollar</option>
   <option value="EUR BE Brussels">EUR European Euro</option>
   <option value="JPY JP Tokyo">JPY Japanese Yen</option>
@@ -332,11 +334,8 @@ currencyArea.innerHTML = `
 SUBMIT
 </button>
 
-</p>
+</div>
 
-
-<span id="convert-from"></span>
-<span id="convert-to"></span>
 
 <div id="currency-1-to-1"></div>
 <div id="currency-results"></div>

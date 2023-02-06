@@ -1,7 +1,161 @@
 body {
     background-color: bisque;
 }
+
+#currency {
+	width: 100%;
+	padding: 20px 0;
+}
+
+#currency h2 {
+	text-align: center;
+	color: #77758a;
+	margin-bottom: 20px;
+}
+
+.inline-block {
+    width: 100%;
+    display: inline-block;
+}
+
+#input-button-container {
+    width: 100%;
+    max-width: 815px;
+    margin: 0 auto;
+}
+
+#amount {
+	width: 115px;
+	box-sizing: border-box;
+	border: 3px solid #77758a;
+	padding: 3px;
+    border-radius: 5px;
+    float: left;
+}
+
+#currency-from, #currency-to {
+	width: 240px;
+	box-sizing: border-box;
+	padding: 5px;
+	background: white;
+	border: 3px solid #77758a;
+    margin: 0 10px;
+    border-radius: 5px;
+    float: left;
+}
+
+#convert-to-text {
+	float: left;
+	padding: 4px 0 0;
+	text-align: center;
+	width: 80px;
+}
+
+/* Increase Opacity of Placeholder */
+#amount::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    opacity: 1; /* Firefox */
+  }
+  
+  #amount:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    opacity: 1;
+  }
+  
+  #amount::-ms-input-placeholder { /* Microsoft Edge */
+    opacity: 1;
+  }
+
+#submit {
+	background: #77758a;
+	color: white;
+	border: none;
+	padding: 5px 3px;
+	box-sizing: border-box;
+	width: 100px;
+	margin: 0;
+    border-radius: 5px;
+    float: left;
+}
+
+#currency-1-to-1, #currency-results {
+	text-align: center;
+	font-size: 1.3em;
+	color: #a32525;
+	margin: 15px 0;
+}
+
+#currency-results {
+    color: #1b7baa;
+}
+
 #holiday {
     height: 10rem;
     overflow-y: scroll;
 }
+
+
+/* Media Queries */
+
+@media only screen and (max-width: 1023px) {
+    #input-button-container {
+        max-width: 705px;
+    }
+    #currency-from {
+        margin: 0 10px 15px;
+    }
+    #convert-to-text {
+        margin: 0 0 15px;
+    }
+    #currency-to {
+        margin: 0 0 15px 10px;
+    }
+    #submit {
+        float: none;
+        display: table;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    #input-button-container {
+        max-width: 580px;
+    }
+    #amount {
+        display: table;
+        float: none;
+        margin: 0 auto 15px;
+        text-align: center;
+    }
+    #currency-from {
+        margin: 0 10px 15px 0;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    #input-button-container {
+        max-width: 500px;
+    }
+    #currency-from, #currency-to {
+        width: 200px;
+    }
+}
+
+@media only screen and (max-width: 567px) {
+    #input-button-container {
+        max-width: 240px;
+    }
+    #currency-from, #currency-to {
+        width: 240px;
+        float: none;
+        display: table;
+        margin: 0 auto 2px;
+        text-align: center;
+    }
+    #convert-to-text {
+        margin: 0 0 10px;
+        width: 100%;
+    }
+    #submit {
+        margin: 15px auto 0;
+    }
+}
+    
