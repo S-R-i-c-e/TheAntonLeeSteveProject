@@ -1,40 +1,12 @@
-/*
-Passed a country name string fetch the national holidays object for that country from Calendarific, using:
-urlRequest is `https://calendarific.com/api/v2/holidays?&api_key=${apiKey}&country=${countryCode}&year=${year}`,
-where:  apiKey is valid Calendarific api key,
-        countryCode is a two character ISO-3166 code,
-        year is the four digit year YYYY.
-
-Given ISO-3166 country code retrive national hoidays object from Calendarific api.
-        
-function:   retrieveNationalHoidays(ISO-3166CountryCode):
-return:     nationalHolidaysObject, else false.
-
-
-In order to obtain ISO-3166 country code fetch from Calendarific once and store as JSON file in the assets, using:
-urlRequest is `https://calendarific.com/api/v2/countries?&api_key=${apiKey}`,
-where:  apiKey is valid Calendarific api key.
-Ideally this information retrived from localStorage, so
-countryCodes retrived from localStorage if possible, else fetch from Calendarific, store locally, retrive from localStorage.
-
-function:   retriveCountryCodes(localStorageName, urlRequestString).
-return:     countryCodesObject, else error.
-}
-
-Given country name string search the country code object for a match, using:
-function:   CountryCodeSearch(countryCodesObj, searchCountryStr).
-return:     ISO-3166 two character code else false if not found.
-
-*/
-/*
+/* Three classes to hold holidays data:
 A NationalHoliday instance holds data for a single holiday for a given country for a given year.
 
-NationalHolidaysList is some header information - country and year - and an array of NationalHoliday's;
+NationalHolidaysList contains header information - country and year - and an array of NationalHoliday's, i.e. all the holidays for that year for that country.
 
-StoredHolidays persists an array of NationalHolidaysList's to localStorage.
+StoredHolidays contains a static list of previously fetched holidays. It stores the data in localStorage.
 */
 // NationalHoliday class to hold national holiday data for a country.
-// Each instance holiday or notable day in that countrie's calendar.
+// Each instance is a holiday or notable day in that country's calendar.
 class NationalHoliday {
 
     constructor(country, date, name, description, type) {
@@ -46,7 +18,7 @@ class NationalHoliday {
     }
     // calenderificCoustructor tailored to construct using a calenderific request
     // holiday[] array object
-    static calendarificConstructor(calendarObject) {
+    static calendarificNationalHolidayConstructor(calendarObject) {
         return new NationalHoliday(
             calendarObject.country.name,
             convertDate(calendarObject.date.iso),
@@ -55,13 +27,13 @@ class NationalHoliday {
             calendarObject.type[0])
     }
     // turn a stringified NationalHoliday object back into a full-fat one
-    static plainNationalHolidayConstructor(plainTextObject) {
-        return new NationalHoliday(plainTextObject._country,
-                                    plainTextObject._date,
-                                    plainTextObject._name,
-                                    plainTextObject._description,
-                                    plainTextObject._type);
-    }    
+    static stringifiedNationalHolidayConstructor(stringifiedObject) {
+        return new NationalHoliday(stringifiedObject._country,
+            stringifiedObject._date,
+            stringifiedObject._name,
+            stringifiedObject._description,
+            stringifiedObject._type);
+    }
     // HTML creation string tailored to TheAntonLeeSteveProject
     toHTMLString() {
         return `<div class="card">
@@ -82,31 +54,34 @@ class NationalHolidaysList {
 
     constructor(country, id, year, holidayArray) {
         this._country = country;
-        this._id = id;        
+        this._id = id;
         this._year = year;
         this._holsList = holidayArray;
     }
     // calenderificCoustructor tailored to construct using a calenderific request data
-    static calendarificHolidayListConstructor(calendarificObject) {
+    static calendarificNationalHolidaysListConstructor(calendarificObject) {
         let holidays = calendarificObject.response.holidays;
         let country = holidays[0].country.name;
-        let id = holidays[0].country.id.toUpperCase();       
+        let id = holidays[0].country.id.toUpperCase();
         let year = holidays[0].date.datetime.year;
-        let holidayArray = holidays.map(holiday => NationalHoliday.calendarificConstructor(holiday));
+        let holidayArray = holidays.map(holiday => NationalHoliday.calendarificNationalHolidayConstructor(holiday));
         return new NationalHolidaysList(country, id, year, holidayArray);
     }
     // convert a stringified NationalHolidaysList back into the real thing
-    static plainObjectConstructor(plainTextObject) {
-        return new NationalHolidaysList(plainTextObject._country,
-                                        plainTextObject._id,
-                                        plainTextObject._year,
-                                        plainTextObject._holsList.map(plainElement => NationalHoliday.plainNationalHolidayConstructor(plainElement)));
+    static stringifiedNationalHolidaysListConstructor(stringifiedObject) {
+        return new NationalHolidaysList(stringifiedObject._country,
+            stringifiedObject._id,
+            stringifiedObject._year,
+            stringifiedObject._holsList.map(plainElement => NationalHoliday.stringifiedNationalHolidayConstructor(plainElement)));
     }
     get year() {
         return this._year;
     }
     get country() {
         return this._country;
+    }
+    get id() {
+        return this._id;
     }
     // HTML creation string tailored to TheAntonLeeSteveProject
     get toHTML() {
@@ -122,22 +97,33 @@ class LocalStorage {
         return JSON.parse(localStorage.getItem(key));
     }
 }
-// class StoredHolidays store Calendarific holiday objects locally so as not annoy them by keep asking for the same data
+// class StoredHolidays - store Calendarific holiday objects locally so as not annoy them by keep asking for the same data
 class StoredHolidays {
     // initiate StoredHolidays by retrieving stored holidays if they exist, else create empty array
     static {
         // retrieve the stored data - data is plain objects until restored to NationalHolidaysList instances
         let countriesVisited = LocalStorage.getItem("countriesVisited") || [];
         // convert plain string objects into NationalHolidaysList instances
-        this._visitedCountries = countriesVisited.map(plainObject => NationalHolidaysList.plainObjectConstructor(plainObject));
+        this._visitedCountries = countriesVisited.map(plainObject => NationalHolidaysList.stringifiedNationalHolidaysListConstructor(plainObject));
     }
     // addHolidaysList - add a NationalHolidaysList instance to the StoredHolidays list, and push the lot to local storage
     static addToHolidaysList(nationalHolidaysListOject) {
-        this._visitedCountries.push(nationalHolidaysListOject);           // append the country
-        LocalStorage.setItem("countriesVisited", StoredHolidays._visitedCountries); // restore the list each time
+        this._visitedCountries.push(nationalHolidaysListOject);           // append the country/year holiday data
+        LocalStorage.setItem("countriesVisited", StoredHolidays._visitedCountries); // re-store the list each time
+    }
+    // getHolidayList(ISO-3166 code) searches the prevoiusly fetched holidays for the list matching the country code
+    // returns that list if found, else returns false
+    static getHolidayList(countryCode) {
+        for (let holidays of this._visitedCountries) {   // loop through NationalHolidaysList's
+            console.log(holidays.id);
+            if (holidays.id === countryCode) {           // return the list if found
+                return holidays;
+            }
+        }
+        return false;                                   // else return false = not found
     }
     static get visitedCountries() {
-       return this._visitedCountries;
+        return this._visitedCountries;
     }
 }
 // HTML index.html element handles
@@ -155,27 +141,36 @@ function createHolidaysRequestURL(countryCode) {
 }
 // processHolidays(Calendarific api data) converts data into HTML string ready for display on website
 function processHolidays(calendarificData) {
-    let newHolidaysData = NationalHolidaysList.calendarificHolidayListConstructor(calendarificData);
+    let newHolidaysData = NationalHolidaysList.calendarificNationalHolidaysListConstructor(calendarificData);
     displayHolidays(newHolidaysData);
     StoredHolidays.addToHolidaysList(newHolidaysData); // add this countries data to the list of visted - it will be added to localStorage
 
 }
 // retrieveNationalHolidays(ISO-3166 code) fetches national holday data from Calendarific.com
 function retrieveNationalHoidays(countryCode) {
-    fetch(createHolidaysRequestURL(countryCode))            // create request URL string
-        .then(response => response.json())
-        .then(holidayData => processHolidays(holidayData)); // pass data on for processing
+    let knownHolidays = StoredHolidays.getHolidayList(countryCode); // see if the holidays data is known already
+    if (!knownHolidays) { 
+        console.log("www");                                          // if not, fetch it from the calendarific api
+        fetch(createHolidaysRequestURL(countryCode))                // create request URL string
+            .then(response => response.json())
+            .then(holidayData => processHolidays(holidayData));     // pass data on for processing
+    } else {  
+        console.log("local")                                                      // if it is known,
+        displayHolidays(knownHolidays);                             // then display
+    }
 }
 // displayHolidays(NationalHolidaysList Object) - refreshes display to show the national holidays of the destination country
 function displayHolidays(nationalHolidaysData) {
     holidayDestination.innerHTML = "";
     holidayDestination.innerHTML = `Destination country ${nationalHolidaysData.country} - National holidays in ${nationalHolidaysData.year}.`;
     holidayList.innerHTML = "";
-    holidayList.innerHTML = nationalHolidaysData.toHTML;   
+    holidayList.innerHTML = nationalHolidaysData.toHTML;
 }
 // convertDate(ISO date format) date, possibly with time stamp appended, converted to simple UK date format
 function convertDate(isoDate) {
-    return `${isoDate.slice(8,10)} - ${isoDate.slice(5,7)} - ${isoDate.slice(0,4)}`;
+    return `${isoDate.slice(8, 10)} - ${isoDate.slice(5, 7)} - ${isoDate.slice(0, 4)}`;
 }
 // test - TEST CODE HERE
-// retrieveNationalHoidays("EE");
+// retrieveNationalHoidays("PL");
+// let test = StoredHolidays.getHolidayList("MX");
+// console.log(test);
