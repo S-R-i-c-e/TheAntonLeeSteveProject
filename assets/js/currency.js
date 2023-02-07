@@ -26,10 +26,6 @@ function currencyConversion () {
 
         let amount = $("#amount").textContent = output;
 
-        if (amount.textContent = output = "") {
-        let amount = 1;
-        }
-
         // console.log(amount)
 
         selectElement = document.querySelector('#currency-from');
@@ -37,7 +33,7 @@ function currencyConversion () {
         
 
         let convertFrom = $("#convert-from").textContent = output.slice(0, 3);
-        console.log("Coverting from " + convertFrom);
+        // console.log("Coverting from " + convertFrom);
         
          selectElement = document.querySelector("#currency-to");
         output = selectElement.value;
@@ -45,7 +41,7 @@ function currencyConversion () {
   
 
         let convertTo = $("#convert-to").textContent = output.slice(0, 3);
-        console.log("Converting to " + convertTo);
+        // console.log("Converting to " + convertTo);
 
         let queryURL =
         "https://api.exchangerate.host/convert?from=" + convertFrom + "&" + "to=" + convertTo;
@@ -63,13 +59,16 @@ function currencyConversion () {
           console.log("1 " + convertFrom + " = " + currencyUnit1 + " " + convertTo);
 
         // Calculate the conversion based on the actual amount value user entered
+        if (amount == "") {
+          amount = 1;
+          }
 
           let currencyUsersAmount = amount * currencyUnit1;
           let currencyUsersAmountRounded = currencyUsersAmount.toFixed(2)
-          console.log("You converted " + amount + " " + convertFrom + " which is equal to " + currencyUsersAmountRounded + " " + convertTo);
+          console.log("You converted " + amount + " " + convertFrom + " = " + currencyUsersAmountRounded + " " + convertTo);
 
-          currency1To1.innerHTML = "1 " + convertFrom + " = " + currencyUnit1 + " " + convertTo;
-          currencyResults.innerHTML = "You converted " + amount + " " + convertFrom + " which is equal to " + currencyUsersAmountRounded + " " + convertTo;
+          currency1To1.innerHTML = '<span style="color: black">EXCHANGE BASE RATE:</span><br>' + '1 ' + convertFrom + " &#187; " + currencyUnit1 + " " + convertTo;
+          currencyResults.innerHTML = '<span style="color: black">YOU CONVERTED:</span><br>' + amount + " " + convertFrom + " &#187; " + currencyUsersAmountRounded + " " + convertTo;
           
         })  
         
