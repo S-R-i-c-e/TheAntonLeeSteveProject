@@ -87,13 +87,27 @@ body {
     color: #1b7baa;
 }
 
+#amount-error, #currency-error-from, #currency-error-to {
+	margin: 10px auto 0;
+	display: table;
+	padding: 5px 10px;
+	background: white;
+	color: #102b4e;
+	text-transform: uppercase;
+	font-size: 1.1em;
+	letter-spacing: 1px;
+	border-radius: 5px;
+	border: solid 2px red;
+    text-align: center;
+}
+
+#amount-error.invisible, #currency-error-from.invisible, #currency-error-to.invisible {
+    display: none;
+}
+
 #holiday {
     height: 10rem;
     overflow-y: scroll;
-}
-
-.reveal {
-    display: block;
 }
 
 
@@ -169,3 +183,6 @@ body {
 	margin: 0 auto;
 	padding: 0;
 }
+
+
+
