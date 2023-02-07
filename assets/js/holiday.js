@@ -171,6 +171,6 @@ function convertDate(isoDate) {
     return `${isoDate.slice(8, 10)} - ${isoDate.slice(5, 7)} - ${isoDate.slice(0, 4)}`;
 }
 // test - TEST CODE HERE
-retrieveNationalHoidays("PL");
+// retrieveNationalHoidays("PL");
 // let test = StoredHolidays.getHolidayList("MX");
 // console.log(test);
