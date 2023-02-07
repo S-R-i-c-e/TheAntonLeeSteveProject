@@ -6,7 +6,6 @@ currencyArea.innerHTML = `
 <h2>CONVERT CURRENCY</h2>
 <form id="input-button-container">
 <div class="inline-block"><input id="amount" placeholder ="Enter amount"></input>
-
 <select id="currency-from" name="currency-from">
 <option disabled selected hidden>Select Currency</option>
   <option value="USD US Washington">USD United States Dollar</option>
@@ -19,9 +18,9 @@ currencyArea.innerHTML = `
   <option value="CNH CN Beijing">CNH Chinese Yuan</option>
   <option value="HKD HK Hong Kong">HKD Hong Kong Dollar</option>
   <option value="NZD NZ Wellington">NZD New Zealand Dollar</option>
-  <option>.......................</option>
-  <option>All other currencies below ↓</option>
-  <option>.......................</option>
+  <option disabled>.......................</option>
+  <option disabled>All other currencies below ↓</option>
+  <option disabled>.......................</option>
   <option value="AED Abu Dhabi">AED United Arab Emirates Dirham</option>
     <option value="AFN AF Kabul">AFN Afghan Afghani</option>
     <option value="ALL AL Tirana">ALL Albanian Lek</option>
@@ -165,7 +164,8 @@ currencyArea.innerHTML = `
     <option value="ZAR ZA Pretoria">ZAR South African Rand</option>
     <option value="ZMW ZM Lusaka">ZMW Zambian Kwacha</option>
     <option value="ZWB ZW Harare">ZWB Zimbabwean Bonds</option>
-    <form>
+ 
+
   </select>
 
 <div id="convert-to-text">convert to</div>
@@ -182,9 +182,9 @@ currencyArea.innerHTML = `
   <option value="CNH CN Beijing">CNH Chinese Yuan</option>
   <option value="HKD HK Hong Kong">HKD Hong Kong Dollar</option>
   <option value="NZD NZ Wellington">NZD New Zealand Dollar</option>
-  <option>.......................</option>
-  <option>All other currencies below ↓</option>
-  <option>.......................</option>
+  <option disabled>.......................</option>
+  <option disabled>All other currencies below ↓</option>
+  <option disabled>.......................</option>
   <option value="AED Abu Dhabi">AED United Arab Emirates Dirham</option>
     <option value="AFN AF Kabul">AFN Afghan Afghani</option>
     <option value="ALL AL Tirana">ALL Albanian Lek</option>
@@ -333,8 +333,10 @@ currencyArea.innerHTML = `
 <button id="submit">
 SUBMIT
 </button>
-
+<form>
+<p id="currency-error" class="invisible">Error</p>
 </div>
+
 
 
 <div id="currency-1-to-1"></div>

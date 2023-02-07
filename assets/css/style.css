@@ -92,6 +92,10 @@ body {
     overflow-y: scroll;
 }
 
+.reveal {
+    display: block;
+}
+
 
 /* Media Queries */
 
@@ -160,9 +164,8 @@ body {
 }
 
 #map {
-    width: 1000px;
-    height: 500px;
-    margin: 0;
-    padding: 0;
+	max-width: 1000px;
+	height: 500px;
+	margin: 0 auto;
+	padding: 0;
 }
-

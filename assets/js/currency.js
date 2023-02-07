@@ -12,7 +12,6 @@ $("#submit").on("click", function (event) {
   //Prevent default browser behaviour
   event.preventDefault();
   currencyConversion ();
-  capitalCityLocation ();
 })
   
 
@@ -31,6 +30,14 @@ function currencyConversion () {
         selectElement = document.querySelector('#currency-from');
         output = selectElement.value;
         
+        
+
+       if (output == "Select Currency") {
+        console.log("currency from error")
+        document.querySelector("#currency-error").className="visible";
+          return;
+
+       }
 
         let convertFrom = $("#convert-from").textContent = output.slice(0, 3);
         // console.log("Coverting from " + convertFrom);
@@ -38,7 +45,10 @@ function currencyConversion () {
          selectElement = document.querySelector("#currency-to");
         output = selectElement.value;
        
-  
+        if (output == "Select Currency") {
+          console.log("currency to error")
+            return
+         }
 
         let convertTo = $("#convert-to").textContent = output.slice(0, 3);
         // console.log("Converting to " + convertTo);
@@ -63,6 +73,8 @@ function currencyConversion () {
           amount = 1;
           }
 
+         
+
           let currencyUsersAmount = amount * currencyUnit1;
           let currencyUsersAmountRounded = currencyUsersAmount.toFixed(2)
           console.log("You converted " + amount + " " + convertFrom + " = " + currencyUsersAmountRounded + " " + convertTo);
@@ -70,6 +82,10 @@ function currencyConversion () {
           currency1To1.innerHTML = '<span style="color: black">EXCHANGE BASE RATE:</span><br>' + '1 ' + convertFrom + " &#187; " + currencyUnit1 + " " + convertTo;
           currencyResults.innerHTML = '<span style="color: black">YOU CONVERTED:</span><br>' + amount + " " + convertFrom + " &#187; " + currencyUsersAmountRounded + " " + convertTo;
           
+
+
+          capitalCityLocation ();
+
         })  
         
 }
@@ -116,6 +132,8 @@ function capitalCityLocation () {
     console.log("Object storing Contry Code / Capital City / Longitude / Latitude ")
     console.log(geoLocation)
   
+    retrieveNationalHoidays(geoLocation.countryCode)
+
   })
   }
   

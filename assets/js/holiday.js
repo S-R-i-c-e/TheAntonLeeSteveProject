@@ -147,18 +147,18 @@ function processHolidays(calendarificData) {
 
 }
 // retrieveNationalHolidays(ISO-3166 code) fetches national holday data from Calendarific.com
-function retrieveNationalHoidays(countryCode) {
-    let knownHolidays = StoredHolidays.getHolidayList(countryCode); // see if the holidays data is known already
-    if (!knownHolidays) { 
-        console.log("www");                                          // if not, fetch it from the calendarific api
-        fetch(createHolidaysRequestURL(countryCode))                // create request URL string
-            .then(response => response.json())
-            .then(holidayData => processHolidays(holidayData));     // pass data on for processing
-    } else {  
-        console.log("local")                                                      // if it is known,
-        displayHolidays(knownHolidays);                             // then display
-    }
-}
+// function retrieveNationalHoidays(countryCode) {
+//     let knownHolidays = StoredHolidays.getHolidayList(countryCode); // see if the holidays data is known already
+//     if (!knownHolidays) { 
+//         console.log("www");                                          // if not, fetch it from the calendarific api
+//         fetch(createHolidaysRequestURL(countryCode))                // create request URL string
+//             .then(response => response.json())
+//             .then(holidayData => processHolidays(holidayData));     // pass data on for processing
+//     } else {  
+//         console.log("local")                                                      // if it is known,
+//         displayHolidays(knownHolidays);                             // then display
+//     }
+// }
 // displayHolidays(NationalHolidaysList Object) - refreshes display to show the national holidays of the destination country
 function displayHolidays(nationalHolidaysData) {
     holidayDestination.innerHTML = "";
