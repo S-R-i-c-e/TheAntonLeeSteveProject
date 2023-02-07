@@ -3,7 +3,7 @@ let api = "2a06c39ab528ae5260e7be3fb9a676eb";
 let currency1To1 = document.querySelector('#currency-1-to-1');
 let currencyResults = document.querySelector('#currency-results');
 
-
+let geoLocation;
 
 // Onclick event to run functions
 
@@ -107,7 +107,7 @@ function capitalCityLocation () {
 
 
     // Create location Object
-    const geoLocation = {
+    geoLocation = {
       countryCode: iso,
       capital: capitalName,
       longitude: longitudeResult,

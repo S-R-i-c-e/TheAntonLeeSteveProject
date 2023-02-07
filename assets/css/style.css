@@ -5,3 +5,10 @@ body {
     height: 10rem;
     overflow-y: scroll;
 }
+
+#map {
+    width: 1000px;
+    height: 500px;
+    margin: 0;
+    padding: 0;
+}
