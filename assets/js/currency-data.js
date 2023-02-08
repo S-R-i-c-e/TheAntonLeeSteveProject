@@ -334,9 +334,10 @@ currencyArea.innerHTML = `
 SUBMIT
 </button>
 <form>
-<p id="currency-error" class="invisible">Error</p>
 </div>
-
+<p id="amount-error" class="invisible">* Enter amount for conversion</p>
+<p id="currency-error-from" class="invisible">* Select initial currency</p>
+<p id="currency-error-to" class="invisible">* Select final currency</p>
 
 
 <div id="currency-1-to-1"></div>

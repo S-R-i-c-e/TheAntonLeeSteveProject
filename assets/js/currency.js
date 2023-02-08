@@ -27,17 +27,29 @@ function currencyConversion () {
 
         // console.log(amount)
 
+
+        if (amount == "") {
+          document.querySelector("#amount-error").className="visible";
+            return
+        }
+        else {
+          document.querySelector("#amount-error").className="invisible";
+        }
+
+
+
         selectElement = document.querySelector('#currency-from');
         output = selectElement.value;
-        
-        
+               
 
        if (output == "Select Currency") {
         console.log("currency from error")
-        document.querySelector("#currency-error").className="visible";
+        document.querySelector("#currency-error-from").className="visible";
           return;
-
        }
+       else {
+        document.querySelector("#currency-error-from").className="invisible";
+      }
 
         let convertFrom = $("#convert-from").textContent = output.slice(0, 3);
         // console.log("Coverting from " + convertFrom);
@@ -47,8 +59,14 @@ function currencyConversion () {
        
         if (output == "Select Currency") {
           console.log("currency to error")
+          document.querySelector("#currency-error-to").className="visible";
             return
-         }
+        }
+        else {
+          document.querySelector("#currency-error-to").className="invisible";
+        }
+            
+         
 
         let convertTo = $("#convert-to").textContent = output.slice(0, 3);
         // console.log("Converting to " + convertTo);
@@ -67,14 +85,9 @@ function currencyConversion () {
 
           let currencyUnit1 = response.info.rate.toFixed(2);
           console.log("1 " + convertFrom + " = " + currencyUnit1 + " " + convertTo);
-
-        // Calculate the conversion based on the actual amount value user entered
-        if (amount == "") {
-          amount = 1;
-          }
+   
 
          
-
           let currencyUsersAmount = amount * currencyUnit1;
           let currencyUsersAmountRounded = currencyUsersAmount.toFixed(2)
           console.log("You converted " + amount + " " + convertFrom + " = " + currencyUsersAmountRounded + " " + convertTo);
