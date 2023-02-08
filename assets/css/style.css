@@ -45,7 +45,7 @@ header .display-4, header .lead {
 	width: 115px;
 	box-sizing: border-box;
 	border: 3px solid #5d7a93;
-    padding: 4px 3px 5px;
+    padding: 4px 7px 5px;
     border-radius: 5px;
     float: left;
 }
@@ -129,6 +129,16 @@ header .display-4, header .lead {
     display: none;
 }
 
+
+#map {
+	max-width: 1000px;
+	height: 500px;
+	margin: 0 auto;
+	padding: 0;
+	box-sizing: border-box;
+	border: 10px solid #5d7a93;
+}
+
 #destination-country {
 	color: #5d7a93;
 	text-align: center;
@@ -150,13 +160,33 @@ header .display-4, header .lead {
 	font-size: 1.2em;
 }
 
-#map {
-	max-width: 1000px;
-	height: 500px;
-	margin: 0 auto;
-	padding: 0;
+#search-container {
+	width: 280px;
+	margin: 20px auto;
+}
+
+#country-input {
 	box-sizing: border-box;
-	border: 10px solid #5d7a93;
+	border: 3px solid #5d7a93;
+	padding: 4px 7px 5px;
+	border-radius: 5px;
+	width: 165px;
+    margin-right: 10px;
+}
+
+#geocode {
+	background: #5d7a93;
+	color: white;
+	border: none;
+	padding: 7px 3px;
+	box-sizing: border-box;
+	width: 80px;
+	margin: 0;
+    border-radius: 5px;
+}
+
+#geocode:hover {
+    background: #294a66;
 }
 
 
