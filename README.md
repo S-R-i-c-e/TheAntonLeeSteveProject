@@ -36,7 +36,7 @@ javascript code, html rendering, CSS styling, Bootstrap, many API's.
 requires a web-browser - open index.html file.
 
 ## Screenshot
-![screenshot](./assets/images/Screenshot.png "screenshot")
+![screenshot](./assets/img/Screenshot.png "screenshot")
 
 ## Written by
 Anton Yosifov, Lee Vine, and Stephen Rice 10/02/2023.
