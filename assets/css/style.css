@@ -144,14 +144,16 @@ header .display-4, header .lead {
 	text-align: center;
 	text-transform: uppercase;
 	max-width: 1000px;
-	margin: 30px auto 20px;
+	margin: 30px auto 10px;
 }
 
 #holiday {
-	height: 500px;
+	height: auto;
 	overflow-y: scroll;
 	max-width: 1000px;
-	margin: 0 auto 0;
+	margin: 0 auto 10px;
+	max-height: 500px;
+
 }
 
 #holiday .card-header {
@@ -161,8 +163,8 @@ header .display-4, header .lead {
 }
 
 #search-container {
-	width: 280px;
-	margin: 20px auto;
+	width: 260px;
+	margin: 0 auto;
 }
 
 #country-input {
