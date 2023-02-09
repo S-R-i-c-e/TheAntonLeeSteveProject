@@ -165,5 +165,5 @@ function displayHolidays(nationalHolidaysData) {
 // convertDate(ISO date format) date, possibly with time stamp appended, converted to simple UK date format
 function convertDate(isoDate) {
     return `${isoDate.slice(8, 10)} - ${isoDate.slice(5, 7)} - ${isoDate.slice(0, 4)}`;
-
 }
+
