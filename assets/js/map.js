@@ -74,7 +74,7 @@ function initMap() {
     map.fitBounds(bounds);
   }
 
-  // Event listener on change 
+  // Event listener on change on from-currency
   currencyFrom.addEventListener("change", () => {
     let val1 = currencyFrom.value.slice(7);
     // console.log(val1);
@@ -83,6 +83,7 @@ function initMap() {
     // centerMarkers();
   });
 
+  // Event listener on change on to-currency
   currencyTo.addEventListener("change", () => {
     let val2 = currencyTo.value.slice(7);
     // console.log(val2);
@@ -91,6 +92,7 @@ function initMap() {
     // centerMarkers();
   });
 
+  //Geocode the first input option
   function geocode1(request) {
     marker1.setMap(null);
     geocoder
@@ -132,6 +134,7 @@ function initMap() {
       });
   }
 
+  //Geocode the second  input option
   function geocode2(request) {
     marker2.setMap(null);
     geocoder
@@ -174,6 +177,7 @@ function initMap() {
       });
   }
 
+  // Event listeners on submit the form
   document.getElementById("submit").addEventListener("click", (event) => {
     event.preventDefault;
     // map.setCenter({ lat: geoLocationss.latitude, lng: geoLocationss.longitude });
@@ -202,12 +206,14 @@ function initMap() {
     }, 1000);
   });
 
+  // Listener on click to add marker and to get country code and name
   map.addListener("click", (event) => {
     // console.log(event);
     geocode({ location: event.latLng });
     // console.log(countryCode);
   });
 
+  //  Autocomplete option - only countries for now
   const options = {
     // componentRestrictions: { country: "us" },
     // fields: ["address_components", "geometry", "icon", "name"],
@@ -215,19 +221,23 @@ function initMap() {
     types: ["country"],
   };
 
+  // autocomplete object
   const autocomplete = new google.maps.places.Autocomplete(input, options);
   // autocomplete.bindTo("bounds", map);
 
+  // Event listener on the search button
   geocodeButton.addEventListener("click", () => {
     geocode({ address: input.value });
     input.value = "";
     // console.log(countryCode);
   });
 
+  // function to clear makers
   function clear() {
     marker.setMap(null);
   }
 
+  // function to geocode the click event
   function geocode(request) {
     clear();
     geocoder
