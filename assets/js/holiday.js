@@ -153,6 +153,13 @@ function retrieveNationalHoidays(countryCode) {
             .then(response => response.json())
             .then(holidayData => processHolidays(holidayData));     // pass data on for processing
     } else {                                                    // if it is known,
+    if (!knownHolidays) { 
+        console.log("www");                                          // if not, fetch it from the calendarific api
+        fetch(createHolidaysRequestURL(countryCode))                // create request URL string
+            .then(response => response.json())
+            .then(holidayData => processHolidays(holidayData));     // pass data on for processing
+    } else {  
+        console.log("local")                                                      // if it is known,
         displayHolidays(knownHolidays);                             // then display
     }
 }

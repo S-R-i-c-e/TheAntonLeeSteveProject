@@ -1,15 +1,32 @@
 body {
-    background-color: bisque;
+    background-color: #FFDA6A;
+    font-family: 'Nunito Sans', sans-serif;
+    padding-bottom: 80px;
+}
+
+header {
+	padding: 20px 0 0;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'PT Sans', sans-serif;
+}
+
+header .display-4, header .lead {
+    text-align: center;
 }
 
 #currency {
 	width: 100%;
-	padding: 20px 0;
+	padding: 30px 0 15px;
+	max-width: 1000px;
+	margin: 0 auto;
+	border-top: 3px solid black;
 }
 
 #currency h2 {
 	text-align: center;
-	color: #77758a;
+	color: #5d7a93;
 	margin-bottom: 20px;
 }
 
@@ -27,8 +44,8 @@ body {
 #amount {
 	width: 115px;
 	box-sizing: border-box;
-	border: 3px solid #77758a;
-	padding: 3px;
+	border: 3px solid #5d7a93;
+    padding: 4px 7px 5px;
     border-radius: 5px;
     float: left;
 }
@@ -38,7 +55,7 @@ body {
 	box-sizing: border-box;
 	padding: 5px;
 	background: white;
-	border: 3px solid #77758a;
+	border: 3px solid #5d7a93;
     margin: 0 10px;
     border-radius: 5px;
     float: left;
@@ -65,16 +82,22 @@ body {
   }
 
 #submit {
-	background: #77758a;
+	background: #5d7a93;
 	color: white;
 	border: none;
-	padding: 5px 3px;
+	padding: 7px 3px;
 	box-sizing: border-box;
 	width: 100px;
 	margin: 0;
     border-radius: 5px;
     float: left;
 }
+
+#submit:hover {
+    background: #294a66;
+}
+
+
 
 #currency-1-to-1, #currency-results {
 	text-align: center;
@@ -84,30 +107,88 @@ body {
 }
 
 #currency-results {
-    color: #1b7baa;
+    color: #5d7a93;
 }
 
 #amount-error, #currency-error-from, #currency-error-to {
 	margin: 10px auto 0;
 	display: table;
 	padding: 5px 10px;
-	background: white;
-	color: #102b4e;
+	background: red;
+	color: white;
 	text-transform: uppercase;
 	font-size: 1.1em;
 	letter-spacing: 1px;
 	border-radius: 5px;
-	border: solid 2px red;
-    text-align: center;
+	border: solid 2px black;
+	text-align: center;
+	font-weight: bold;
 }
 
 #amount-error.invisible, #currency-error-from.invisible, #currency-error-to.invisible {
     display: none;
 }
 
+
+#map {
+	max-width: 1000px;
+	height: 500px;
+	margin: 0 auto;
+	padding: 0;
+	box-sizing: border-box;
+	border: 10px solid #5d7a93;
+}
+
+#destination-country {
+	color: #5d7a93;
+	text-align: center;
+	text-transform: uppercase;
+	max-width: 1000px;
+	margin: 30px auto 10px;
+}
+
 #holiday {
-    height: 10rem;
-    overflow-y: scroll;
+	height: auto;
+	overflow-y: scroll;
+	max-width: 1000px;
+	margin: 0 auto 10px;
+	max-height: 500px;
+
+}
+
+#holiday .card-header {
+	background: #5d7a93;
+	color: white;
+	font-size: 1.2em;
+}
+
+#search-container {
+	width: 260px;
+	margin: 0 auto;
+}
+
+#country-input {
+	box-sizing: border-box;
+	border: 3px solid #5d7a93;
+	padding: 4px 7px 5px;
+	border-radius: 5px;
+	width: 165px;
+    margin-right: 10px;
+}
+
+#geocode {
+	background: #5d7a93;
+	color: white;
+	border: none;
+	padding: 7px 3px;
+	box-sizing: border-box;
+	width: 80px;
+	margin: 0;
+    border-radius: 5px;
+}
+
+#geocode:hover {
+    background: #294a66;
 }
 
 
@@ -177,12 +258,7 @@ body {
     }
 }
 
-#map {
-	max-width: 1000px;
-	height: 500px;
-	margin: 0 auto;
-	padding: 0;
-}
+
 
 
 

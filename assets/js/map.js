@@ -33,6 +33,8 @@ let holidayss = [
 ];
 
 const mapDiv = document.getElementById("map");
+const geocodeButton = document.getElementById("geocode");
+const input = document.getElementById("country-input");
 let map;
 let mapCenter;
 let zoom;
@@ -42,6 +44,7 @@ let marker2;
 let geocoder;
 let linePath;
 let lineCoordinates = [];
+let countryCode;
 
 function initMap() {
   // { lat: 51.50853, lng: -0.136439 }; london
@@ -94,33 +97,77 @@ function initMap() {
 
   document.getElementById("currency-from").addEventListener("change", () => {
     let val1 = document.getElementById("currency-from").value.slice(7);
-    console.log(val1);
+    // console.log(val1);
     geocode1({ address: val1 });
     map.setZoom(4);
   });
   document.getElementById("currency-to").addEventListener("change", () => {
     let val2 = document.getElementById("currency-to").value.slice(7);
-    console.log(val2);
+    // console.log(val2);
     geocode2({ address: val2 });
     map.setZoom(4);
   });
 
-  // map.addListener("click", (event) => {
-  //   console.log(event);
-  //   geocode({ location: event.latLng });
-  // });
+  map.addListener("click", (event) => {
+    // console.log(event);
+    geocode({ location: event.latLng });
+    // console.log(countryCode);
+    
+  });
 
+  const options = {
+    // componentRestrictions: { country: "us" },
+    // fields: ["address_components", "geometry", "icon", "name"],
+    // strictBounds: false,
+    types: ["country"],
+  };
+  
+  const autocomplete = new google.maps.places.Autocomplete(input, options);
+  // autocomplete.bindTo("bounds", map);
+
+  geocodeButton.addEventListener("click", () => {
+    geocode({ address: input.value });
+    input.value = "";
+    // console.log(countryCode);
+  })
+  
+  function clear() {
+    marker.setMap(null);
+  }
+  
+  function geocode(request) {
+    clear();
+    geocoder
+      .geocode(request)
+      .then((result) => {
+        const { results } = result;
+        // console.log(results)
+        map.setCenter(results[0].geometry.location);
+        marker.setPosition(results[0].geometry.location);
+        marker.setMap(map);
+        // document.querySelector(".test").innerText = results[results.length -1].address_components[0].short_name;
+        // document.querySelector(".test").innerText = JSON.stringify(result, null, 2);
+        countryCode = results[results.length -1].address_components[0].short_name;
+        // console.log(countryCode);
+        retrieveNationalHoidays(countryCode);
+      })
+      .catch((e) => {
+        alert("Geocode was not successful for the following reason: " + e);
+      });
+  }
+  
+  
   function geocode1(request) {
     marker1.setMap(null);
     geocoder
       .geocode(request)
       .then((result) => {
         const { results } = result;
-        console.log(results);
+        // console.log(results);
         lineCoordinates[0] = results[0].geometry.location;
         map.setCenter(results[0].geometry.location);
         // map.setCenter(lineCoordinates || results[0].geometry.location);
-        console.log(results[0].geometry.location);
+        // console.log(results[0].geometry.location);
         // marker1 = new google.maps.Marker({
         //   position: results[0].geometry.location,
         //   map: map,});
@@ -128,8 +175,7 @@ function initMap() {
         marker1.setMap(map);
         // removeLine();
         addLine();
-        // responseDiv.style.display = "block";
-        // response.innerText = JSON.stringify(result, null, 2);
+
         // return results[0].geometry.location;
       })
       .catch((e) => {
@@ -147,7 +193,7 @@ function initMap() {
         lineCoordinates[1] = results[0].geometry.location;
         map.setCenter(results[0].geometry.location);
         // map.setCenter(lineCoordinates || results[0].geometry.location);
-        console.log(results[0].geometry.location);
+        // console.log(results[0].geometry.location);
         // marker2 = new google.maps.Marker({
         //   position: results[0].geometry.location,
         //   map: map,});
@@ -155,8 +201,6 @@ function initMap() {
         marker2.setMap(map);
         // removeLine();
         addLine();
-        // responseDiv.style.display = "block";
-        // response.innerText = JSON.stringify(result, null, 2);
         // return results[0].geometry.location;
       })
       .catch((e) => {
@@ -182,8 +226,8 @@ function initMap() {
     event.preventDefault;
     // map.setCenter({ lat: geoLocationss.latitude, lng: geoLocationss.longitude });
     setTimeout(function () {
-      console.log("lat test: " + geoLocation.latitude);
-      console.log("lon test: " + geoLocation.longitude);
+      // console.log("lat test: " + geoLocation.latitude);
+      // console.log("lon test: " + geoLocation.longitude);
       map.setCenter({ lat: geoLocation.latitude, lng: geoLocation.longitude });
       map.setZoom(7);
       // initMap();
