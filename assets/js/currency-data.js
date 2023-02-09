@@ -8,7 +8,7 @@ currencyArea.innerHTML = `
 <div class="inline-block"><input id="amount" placeholder ="Enter amount"></input>
 <select id="currency-from" name="currency-from">
 <option disabled selected hidden>Select Currency</option>
-  <option value="USD US Washington">USD United States Dollar</option>
+  <option value="USD US Washington DC">USD United States Dollar</option>
   <option value="EUR BE Brussels">EUR European Euro</option>
   <option value="JPY JP Tokyo">JPY Japanese Yen</option>
   <option value="GBP GB London">GBP British Pound Sterling</option>

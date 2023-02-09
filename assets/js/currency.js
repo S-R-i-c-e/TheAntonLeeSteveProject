@@ -43,7 +43,7 @@ function currencyConversion () {
                
 
        if (output == "Select Currency") {
-        console.log("currency from error")
+        // console.log("currency from error")
         document.querySelector("#currency-error-from").className="visible";
           return;
        }
@@ -58,7 +58,7 @@ function currencyConversion () {
         output = selectElement.value;
        
         if (output == "Select Currency") {
-          console.log("currency to error")
+          // console.log("currency to error")
           document.querySelector("#currency-error-to").className="visible";
             return
         }
@@ -84,13 +84,13 @@ function currencyConversion () {
         .then(function (response) {
 
           let currencyUnit1 = response.info.rate.toFixed(2);
-          console.log("1 " + convertFrom + " = " + currencyUnit1 + " " + convertTo);
+          // console.log("1 " + convertFrom + " = " + currencyUnit1 + " " + convertTo);
    
 
          
           let currencyUsersAmount = amount * currencyUnit1;
           let currencyUsersAmountRounded = currencyUsersAmount.toFixed(2)
-          console.log("You converted " + amount + " " + convertFrom + " = " + currencyUsersAmountRounded + " " + convertTo);
+          // console.log("You converted " + amount + " " + convertFrom + " = " + currencyUsersAmountRounded + " " + convertTo);
 
           currency1To1.innerHTML = '<span style="color: black">EXCHANGE BASE RATE:</span><br>' + '1 ' + convertFrom + " &#187; " + currencyUnit1 + " " + convertTo;
           currencyResults.innerHTML = '<span style="color: black">YOU CONVERTED:</span><br>' + amount + " " + convertFrom + " &#187; " + currencyUsersAmountRounded + " " + convertTo;
@@ -142,8 +142,8 @@ function capitalCityLocation () {
       latitude: latitudeResult,
     };
   
-    console.log("Object storing Contry Code / Capital City / Longitude / Latitude ")
-    console.log(geoLocation)
+    // console.log("Object storing Contry Code / Capital City / Longitude / Latitude ")
+    // console.log(geoLocation)
   
     retrieveNationalHoidays(geoLocation.countryCode)
 
