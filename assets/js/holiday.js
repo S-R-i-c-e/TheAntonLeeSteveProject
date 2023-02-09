@@ -44,7 +44,6 @@ class NationalHoliday {
                     </div>
                 </div>`;
     }
-
     toString() {
         return `country: ${this._country}; date: ${this._date}; name: ${this._name}.`;
     }
@@ -115,7 +114,6 @@ class StoredHolidays {
     // returns that list if found, else returns false
     static getHolidayList(countryCode) {
         for (let holidays of this._visitedCountries) {   // loop through NationalHolidaysList's
-            console.log(holidays.id);
             if (holidays.id === countryCode) {           // return the list if found
                 return holidays;
             }
@@ -149,13 +147,11 @@ function processHolidays(calendarificData) {
 // retrieveNationalHolidays(ISO-3166 code) fetches national holday data from Calendarific.com
 function retrieveNationalHoidays(countryCode) {
     let knownHolidays = StoredHolidays.getHolidayList(countryCode); // see if the holidays data is known already
-    if (!knownHolidays) { 
-        console.log("www");                                          // if not, fetch it from the calendarific api
+    if (!knownHolidays) {                                        // if not, fetch it from the calendarific api
         fetch(createHolidaysRequestURL(countryCode))                // create request URL string
             .then(response => response.json())
             .then(holidayData => processHolidays(holidayData));     // pass data on for processing
-    } else {  
-        console.log("local")                                                      // if it is known,
+    } else {                                      // if it is known,
         displayHolidays(knownHolidays);                             // then display
     }
 }
@@ -170,7 +166,3 @@ function displayHolidays(nationalHolidaysData) {
 function convertDate(isoDate) {
     return `${isoDate.slice(8, 10)} - ${isoDate.slice(5, 7)} - ${isoDate.slice(0, 4)}`;
 }
-// test - TEST CODE HERE
-// retrieveNationalHoidays("PL");
-// let test = StoredHolidays.getHolidayList("MX");
-// console.log(test);
