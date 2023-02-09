@@ -151,7 +151,7 @@ header .display-4, header .lead {
 	height: 500px;
 	overflow-y: scroll;
 	max-width: 1000px;
-	margin: 0 auto;
+	margin: 0 auto 0;
 }
 
 #holiday .card-header {
