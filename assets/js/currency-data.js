@@ -158,7 +158,6 @@ currencyArea.innerHTML = `
     <option value="VUV VU Port Vila">VUV Vanuatu Vatu</option>
     <option value="WST WS Apia">WST Samoan Tālā</option>
     <option value="XAF XA Yaoundé">XAF Central African Franc</option>
-    <option value="XCD XC Castries">XCD Eastern Caribbean Dollar</option>
     <option value="XOF XO Dakar">XOF West African Franc</option>
     <option value="XPF XP Papeete">XPF CFP Franc</option>
     <option value="ZAR ZA Pretoria">ZAR South African Rand</option>
@@ -172,7 +171,7 @@ currencyArea.innerHTML = `
 
 <select id="currency-to" name="currency-to">
 <option disabled selected hidden>Select Currency</option>
-  <option value="USD US Washington">USD United States Dollar</option>
+  <option value="USD US Washington DC">USD United States Dollar</option>
   <option value="EUR BE Brussels">EUR European Euro</option>
   <option value="JPY JP Tokyo">JPY Japanese Yen</option>
   <option value="GBP GB London">GBP British Pound Sterling</option>
@@ -322,7 +321,6 @@ currencyArea.innerHTML = `
     <option value="VUV VU Port Vila">VUV Vanuatu Vatu</option>
     <option value="WST WS Apia">WST Samoan Tālā</option>
     <option value="XAF XA Yaoundé">XAF Central African Franc</option>
-    <option value="XCD XC Castries">XCD Eastern Caribbean Dollar</option>
     <option value="XOF XO Dakar">XOF West African Franc</option>
     <option value="XPF XP Papeete">XPF CFP Franc</option>
     <option value="ZAR ZA Pretoria">ZAR South African Rand</option>

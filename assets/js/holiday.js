@@ -158,7 +158,7 @@ function retrieveNationalHoidays(countryCode) {
 // displayHolidays(NationalHolidaysList Object) - refreshes display to show the national holidays of the destination country
 function displayHolidays(nationalHolidaysData) {
     holidayDestination.innerHTML = "";
-    holidayDestination.innerHTML = `Destination country ${nationalHolidaysData.country} - National holidays in ${nationalHolidaysData.year}.`;
+    holidayDestination.innerHTML = `Destination country ${nationalHolidaysData.country} - National holidays and events in ${nationalHolidaysData.year}.`;
     holidayList.innerHTML = "";
     holidayList.innerHTML = nationalHolidaysData.toHTML;
 }
