@@ -60,7 +60,7 @@ function initMap() {
   // Function to show all the markers on the map
   function centerMarkers() {
     for (i = 0; i < markers.length; i++) {
-      bounds.extend(markers[i].getPosition);
+      bounds.extend(markers[i].getPosition());
     }
 
     // google.maps.event.addListenerOnce(map, "bounds_changed", function (event) {
@@ -72,6 +72,7 @@ function initMap() {
     // });
     map.setCenter(bounds.getCenter());
     map.fitBounds(bounds);
+    map.setZoom(map.getZoom()-0.8);
   }
 
   // Event listener on change on from-currency
@@ -202,7 +203,7 @@ function initMap() {
       // marker.addListener("click", () => {
       //   infowindow.open(map, marker2);
       // });
-      // centerMarkers()
+      centerMarkers();
     }, 1000);
   });
 
