@@ -1,3 +1,32 @@
+const cssDark = document.querySelector("#dark");
+const switchTheme = document.querySelector("#switch-theme");
+// cssDark.removeAttribute("disabled");
+// let mode = localStorage.setItem("themeMode", true);
+
+if (
+  localStorage.getItem("themeMode") === null ||
+  localStorage.getItem("themeMode") === "light"
+) {
+  cssDark.setAttribute("disabled", "disabled");
+  switchTheme.textContent = "🌚";
+  localStorage.setItem("themeMode", "light");
+} else {
+  cssDark.removeAttribute("disabled");
+  switchTheme.textContent = "🌞";
+}
+
+switchTheme.addEventListener("click", (event) => {
+  if (localStorage.getItem("themeMode") === "light") {
+    cssDark.removeAttribute("disabled");
+    switchTheme.textContent = "🌞"
+    localStorage.setItem("themeMode", "dark");
+  } else {
+    cssDark.setAttribute("disabled", "disabled");
+    switchTheme.textContent = "🌚"
+    localStorage.setItem("themeMode", "light");
+  }
+});
+
 let currencyContainer = document.querySelector("#currency");
 
 let currencyArea = document.createElement("div");
@@ -339,4 +368,3 @@ currencyArea.innerHTML = `
 `;
 
 currencyContainer.append(currencyArea);
-

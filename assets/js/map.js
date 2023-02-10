@@ -72,7 +72,7 @@ function initMap() {
     // });
     map.setCenter(bounds.getCenter());
     map.fitBounds(bounds);
-    map.setZoom(map.getZoom()-0.8);
+    map.setZoom(map.getZoom() - 0.8);
   }
 
   // Event listener on change on from-currency
@@ -252,22 +252,38 @@ function initMap() {
         marker.setMap(map);
         // document.querySelector(".test").innerText = results[results.length -1].address_components[0].short_name;
         // document.querySelector(".test").innerText = JSON.stringify(result, null, 2);
-        countryCode =
-          results[results.length - 1].address_components[0].short_name;
-        infowindow.setContent(
-          `<h6><a href="#holidays">${
-            results[results.length - 1].address_components[0].long_name
-          } - Holidays & Events</a></h6>`
-        );
-        infowindow.open({
-          anchor: marker,
-          map,
-        });
-        marker.addListener("click", () => {
-          infowindow.open(map, marker);
-        });
-        // console.log(countryCode);
-        retrieveNationalHoidays(countryCode);
+        if (
+          results[results.length - 1].address_components[0].short_name.length <
+          5
+        ) {
+          countryCode =
+            results[results.length - 1].address_components[0].short_name;
+          infowindow.setContent(
+            `<h6><a href="#holidays">${
+              results[results.length - 1].address_components[0].long_name
+            } - Holidays & Events</a></h6>`
+          );
+          infowindow.open({
+            anchor: marker,
+            map,
+          });
+          marker.addListener("click", () => {
+            infowindow.open(map, marker);
+          });
+          // console.log(countryCode);
+          retrieveNationalHoidays(countryCode);
+        } else {
+          infowindow.setContent(
+            `<h6>Not a country, click on country<br> to find holidays and events</h6>`
+          );
+          infowindow.open({
+            anchor: marker,
+            map,
+          });
+          marker.addListener("click", () => {
+            infowindow.open(map, marker);
+          });
+        }
       })
       .catch((e) => {
         alert("Geocode was not successful for the following reason: " + e);

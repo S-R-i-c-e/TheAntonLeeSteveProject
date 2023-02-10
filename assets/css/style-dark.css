@@ -1,0 +1,79 @@
+body {
+  background-color: #141e24;
+}
+
+h1 {
+  color: #e96c4c;
+}
+
+header p {
+  color: #e96c4c;
+}
+#currency {
+  border-top-color: #316d7c;
+}
+
+#currency h2 {
+  color: #316d7c;
+}
+
+#currency-from, #currency-to, #country-input{
+  background-color: #1b1c1e;
+}
+#convert-to-text {
+  color: #316d7c;
+}
+input,
+select, option {
+  background: #1b1c1e;
+  color: #e96c4c;
+  border-color: #645d53;
+}
+
+button {
+  background: #4a6276;
+  color: white;
+}
+
+button:hover {
+  background: #213b52;
+}
+
+#currency-1-to-1 {
+  color: #a32525;
+}
+
+.span {
+  color: yellowgreen;
+}
+
+
+#currency-results {
+  color: #5d7a93;
+}
+
+#amount-error,
+#currency-error-from,
+#currency-error-to {
+  background: red;
+  color: white;
+  border: solid 2px yellow
+}
+
+#map {
+  border-color: #e96c4c;
+}
+
+#destination-country {
+  color: #316d7c;
+}
+
+#holiday .card-header {
+  background: 7;
+  color: white;
+}
+
+.card-body {
+  background-color: #181a1b;
+  color: #e96c4c;
+}
